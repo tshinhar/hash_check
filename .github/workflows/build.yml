@@ -51,4 +51,20 @@ jobs:
         with:
           name: hash_check_windows
           path: ./hash_check*.exe
+
+  on-windows:
+    name: run on windows
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ilammy/msvc-dev-cmd@v1.4.1
+    - name: compile
+      run: | 
+        cl main.c /Fe:hash_check /std:c++latest
+    - name: upload executable
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows
+        path: |
+          hash_check.exe
       
