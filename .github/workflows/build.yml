@@ -40,10 +40,15 @@ jobs:
           sudo apt update
           sudo apt install mingw-w64 -y
 
+      - name: get openssl form source
+        run: |
+          git clone https://github.com/openssl/openssl.git
+          ./openssl/Configure --cross-compile-prefix=x86_64-w64-mingw32- mingw64
+          make
+
       - name: build 32-bit and 64-bit
         shell: bash
         run: |
-          i686-w64-mingw32-gcc -o hash_check_32.exe main.c -lcrypto
           x86_64-w64-mingw32-gcc -o hash_check_64.exe main.c -lcrypto
         
       - name: Upload artifacts 
@@ -63,7 +68,7 @@ jobs:
         choco install openssl
     - name: compile
       run: | 
-        cl main.c /Fe:hash_check /std:c++latest
+        gcc -I c:\openssl\include -o hash_check.exe main.c -lcrypto
     - name: upload executable
       uses: actions/upload-artifact@v2
       with:
