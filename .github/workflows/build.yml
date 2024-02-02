@@ -43,7 +43,7 @@ jobs:
       - name: build 32-bit and 64-bit
         shell: bash
         run: |
-          gi686-w64-mingw32-gcc -o hash_check_32.exe main.c
+          i686-w64-mingw32-gcc -o hash_check_32.exe main.c
           x86_64-w64-mingw32-gcc -o hash_check_64.exe main.c
         
       - name: Upload artifacts 
