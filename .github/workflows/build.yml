@@ -44,7 +44,7 @@ jobs:
         run: |
           git clone https://github.com/openssl/openssl.git
           ./openssl/Configure --cross-compile-prefix=x86_64-w64-mingw32- mingw64
-          make
+          ./openssl/make
 
       - name: build 32-bit and 64-bit
         shell: bash
