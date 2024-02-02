@@ -36,7 +36,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: install mingw-w64
-        run: apt-get install mingw-w64 -y
+        run: |
+          sudo apt update
+          sudo apt install mingw-w64 -y
 
       - name: build 32-bit and 64-bit
         shell: bash
