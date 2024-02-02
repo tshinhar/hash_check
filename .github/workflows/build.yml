@@ -58,6 +58,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ilammy/msvc-dev-cmd@v1.4.1
+    - name: install openssl
+      run: | 
+        choco install openssl
     - name: compile
       run: | 
         cl main.c /Fe:hash_check /std:c++latest
